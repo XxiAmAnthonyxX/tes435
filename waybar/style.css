@@ -1,0 +1,24 @@
+@import url('file:///home/x/.cache/wal/theme-waybar.css');
+
+* {
+    all: unset;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 10px;
+}
+
+#waybar {
+    background: @color0;
+    border-radius: 0px;
+}
+
+#custom-cava.paused,
+#mpris.paused,
+#custom-clock,
+#custom-cava,
+#mpris {
+    padding: 0 10px;
+    color: @color15;
+    background: transparent;
+    border-radius: 10px;
+
+}

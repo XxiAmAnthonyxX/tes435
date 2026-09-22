@@ -1,0 +1,31 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "height": 36,
+
+  "modules-left":   ["custom/cava"],
+  "modules-center": ["custom/clock"],
+  "modules-right": ["mpris"],
+
+"custom/clock": {
+  "exec": "~/.config/waybar/scripts/clock.sh",
+  "interval": 1,
+  "tooltip": false,
+  "on-click": "mode"
+},
+
+"custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "tooltip": false
+},
+
+"mpris": {
+  "format": "{artist} - {title}",
+  "format-paused": "{artist} - {title}",
+  "format-stopped": "{artist} - {title}",
+  "max-length": 60,
+  "interval": 1,
+  "tooltip": false
+}
+}
