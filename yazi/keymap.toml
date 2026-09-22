@@ -1,0 +1,44 @@
+# ~/.config/yazi/keymap.toml
+
+[mgr]
+prepend_keymap = [
+	# Smart enter (open file or enter dir)
+	{ on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+	{ on = "<Enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+
+	# Smart paste
+	{ on = "p", run = "plugin smart-paste", desc = "Paste into the hovered directory or CWD" },
+
+	# Jump to char (vim-style f)
+	{ on = "f", run = "plugin jump-to-char", desc = "Jump to char" },
+
+	# Toggle panes
+	{ on = "T", run = "plugin toggle-pane max-preview", desc = "Maximize / restore preview" },
+	{ on = ["t", "p"], run = "plugin toggle-pane min-parent", desc = "Toggle parent pane" },
+	{ on = ["t", "c"], run = "plugin toggle-pane min-current", desc = "Toggle current pane" },
+
+	# Git / VCS
+	{ on = ["g", "c"], run = "plugin vcs-files", desc = "Show Git changed files" },
+
+	# Chmod
+	{ on = ["c", "m"], run = "plugin chmod", desc = "Chmod on selected files" },
+
+	# Mount manager
+	{ on = "M", run = "plugin mount", desc = "Mount manager" },
+
+	# Zoom preview image
+	{ on = ["+", "="], run = "plugin zoom 1", desc = "Zoom in" },
+	{ on = "-", run = "plugin zoom -1", desc = "Zoom out" },
+
+	# Smart filter
+	{ on = "F", run = "plugin smart-filter", desc = "Smart filter" },
+
+	# Useful navigation
+	{ on = ["g", "h"], run = "cd ~", desc = "Go home" },
+	{ on = ["g", "c"], run = "cd ~/.config", desc = "Go config" },
+	{ on = ["g", "d"], run = "cd ~/Downloads", desc = "Go Downloads" },
+	{ on = ["g", "D"], run = "cd ~/Documents", desc = "Go Documents" },
+	{ on = ["g", "p"], run = "cd ~/Pictures", desc = "Go Pictures" },
+	{ on = ["g", "v"], run = "cd ~/Videos", desc = "Go Videos" },
+	{ on = ["g", "t"], run = "cd /tmp", desc = "Go /tmp" },
+]

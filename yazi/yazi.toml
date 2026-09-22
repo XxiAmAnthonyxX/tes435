@@ -1,0 +1,70 @@
+# ~/.config/yazi/yazi.toml
+#"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[mgr]
+ratio          = [1, 3, 4]          # parent | current | preview (good balance on most monitors)
+sort_by        = "natural"
+sort_sensitive = false
+sort_reverse   = false
+sort_dir_first = true
+sort_translit  = true
+linemode       = "size_and_mtime"   # custom linemode defined in init.lua
+show_hidden    = false
+show_symlink   = true
+scrolloff      = 8
+mouse_events   = ["click", "scroll"]
+title_format   = "Yazi: {cwd}"
+
+[preview]
+wrap           = "yes"
+tab_size       = 2
+max_width      = 1200               # increase if you have a high-res display
+max_height     = 1500
+image_delay    = 30                 # ms – reduces flicker while scrolling
+image_filter   = "lanczos3"         # best quality (triangle is faster)
+image_quality  = 80
+cache_dir      = ""                 # empty = use XDG cache
+
+[opener]
+edit = [
+	{ run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+]
+play = [
+	{ run = 'mpv --force-window=immediate "$@"', orphan = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open", for = "unix" },
+]
+reveal = [
+	{ run = 'xdg-open "$(dirname "$@")"', desc = "Reveal", for = "unix" },
+]
+extract = [
+	{ run = 'ouch decompress "$@"', desc = "Extract here", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+	{ url = "*/", use = [ "edit", "open", "reveal" ] },
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+	{ mime = "application/pdf", use = [ "open", "reveal" ] },
+	{ url = "*.{zip,tar,gz,bz2,xz,7z,rar}", use = [ "extract", "reveal" ] },
+]
+
+[plugin]
+prepend_previewers = [
+	{ url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+	{ url = "*/", run = 'piper -- eza -TL=3 --color=always --icons --group-directories-first --git "$1"' },
+	{ mime = "application/octet-stream", run = "piper -- hexyl --border none \"$1\"" },
+]
+
+prepend_fetchers = [
+	{ id = "git", url = "*",  run = "git", group = "git" },
+	{ id = "git", url = "*/", run = "git", group = "git" },
+]
+
+[tasks]
+micro_workers = 10
+macro_workers = 25
+image_alloc   = 536870912          # 512 MB
