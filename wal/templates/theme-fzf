@@ -1,0 +1,15 @@
+--color=fg:7,bg:0,hl:14
+--color=fg+:7,bg+:0,hl+:11
+--color=info:6,prompt:14,pointer:14
+--color=marker:14,spinner:9,header:11
+--color=border:8
+--color=preview-fg:7,preview-bg:0
+--layout=reverse
+--border=rounded
+--prompt='❯ '
+--pointer='▶'
+--marker='✓'
+--info=inline
+--height=100%
+--preview-window=right:50%:wrap:border-rounded
+--preview='bat --color=always --style=numbers,changes --line-range=:500 {}'
